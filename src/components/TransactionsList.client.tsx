@@ -119,37 +119,37 @@ function TransactionsList() {
   
 
   return (
-<div className="flex flex-col p-4">
+<div className="flex flex-col p-4 bg-gradient-to-r from-blue-100 to-blue-200 min-h-screen">
   <input
-    className="mb-2 p-2 border border-gray-300 rounded"
+    className="mb-2 p-2 border border-gray-400 rounded shadow focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
     type="text"
     value={pubKey}
     onChange={handlePubKeyChange}
     placeholder="Enter public key"
   />
   <input
-    className="mb-2 p-2 border border-gray-300 rounded"
+    className="mb-2 p-2 border border-gray-400 rounded shadow focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
     type="number"
     value={minAmount}
     onChange={(e) => setMinAmount(Number(e.target.value))}
     placeholder="Minimum Amount"
   />
   <input
-    className="mb-2 p-2 border border-gray-300 rounded"
+    className="mb-2 p-2 border border-gray-400 rounded shadow focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
     type="number"
     value={maxAmount}
     onChange={(e) => setMaxAmount(Number(e.target.value))}
     placeholder="Maximum Amount"
   />
   <input
-    className="mb-2 p-2 border border-gray-300 rounded"
+    className="mb-4 p-2 border border-gray-400 rounded shadow focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
     type="date"
     value={startDate}
     onChange={e => setStartDate(e.target.value)}
     placeholder="Start Date"
   />
   <input
-    className="mb-4 p-2 border border-gray-300 rounded"
+    className="mb-4 p-2 border border-gray-400 rounded shadow focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
     type="date"
     value={endDate}
     onChange={e => setEndDate(e.target.value)}
@@ -160,9 +160,9 @@ function TransactionsList() {
       const accountIndex = transaction.transaction.message.accountKeys.indexOf(pubKey);
       const amount = transaction.meta.postBalances[accountIndex] - transaction.meta.preBalances[accountIndex];
       const date = new Date(transaction.blockTime * 1000).toLocaleString();
-      const counterpartyValue = transaction.transaction.message.accountKeys[1] !== pubKey ?transaction.transaction.message.accountKeys[1] : transaction.transaction.message.accountKeys[0];
+      const counterpartyValue = transaction.transaction.message.accountKeys[1] !== pubKey ? transaction.transaction.message.accountKeys[1] : transaction.transaction.message.accountKeys[0];
       return (
-        <li key={index} className="mb-2">
+        <li key={index} className="mb-2 bg-white bg-opacity-50 rounded-md p-3 shadow-lg">
           <span className="font-semibold">Counterparty:</span> {counterpartyValue}<br />
           <span className="font-semibold">Amount:</span> {amount/1000000000}<br />
           <span className="font-semibold">Date:</span> {date}
@@ -174,12 +174,13 @@ function TransactionsList() {
     <button 
       onClick={loadMoreTransactions} 
       disabled={loading}
-      className={`p-2 bg-blue-500 text-white rounded ${loading ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-700'}`}
+      className={`p-2 bg-blue-500 hover:bg-blue-700 text-white rounded shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1 ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
     >
       {loading ? 'Loading...' : 'Load More'}
     </button>
   )}
 </div>
+
   );
 
 }
