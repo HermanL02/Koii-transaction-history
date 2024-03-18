@@ -21,7 +21,7 @@ async function getKoiiTransactionHistory(pubKey, limit = 10, beforeSignature = n
     return transactions;
   } catch (error) {
     console.error("Error fetching Koii transaction history:", error);
-    throw error; // 抛出错误，以便响应可以捕获
+    throw error; 
   }
 }
 
